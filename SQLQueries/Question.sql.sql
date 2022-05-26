@@ -1,5 +1,5 @@
---USE DATABASE CityQuiz
--- GO
+USE cityQuizDB
+GO
 
 
 CREATE TABLE Question (

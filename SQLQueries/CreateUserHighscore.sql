@@ -1,5 +1,7 @@
 CREATE DATABASE cityQuizDB;
 
+USE cityQuizDB;
+
 CREATE TABLE Users (
     id int IDENTITY,
     userName varchar(255) NOT NULL,
@@ -18,3 +20,4 @@ CREATE TABLE HighScore (
     FOREIGN KEY (userid) REFERENCES Users(id)
 );
 GO
+
