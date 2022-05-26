@@ -1,6 +1,4 @@
---USE DATABASE CityQuiz
--- GO
-
+USE cityQuizDB; 
 
 CREATE TABLE Question (
 	id INT IDENTITY,
@@ -75,6 +73,7 @@ GO
 INSERT INTO Question (id, city, country, longitude, latitude) values (20, 'Igurusi', 'Tanzania', 33.8425243, -8.8221596);
 GO
 
-
---SELECT * FROM Question;
---GO
+SELECT * FROM Question;
+SELECT * FROM Users; 
+SELECT * FROM HighScore; 
+GO
