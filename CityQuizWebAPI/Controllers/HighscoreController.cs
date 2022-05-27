@@ -10,7 +10,14 @@ namespace CityQuizWebAPI.Controllers
     [Route("api/[controller]")]
     [ApiController]
     public class HighscoreController : ControllerBase
-    {
+    {//Class that handle incoming browser requests, retrieve model data, 
+    //and then specify view templates that return a response to the browser.
+        private readonly CityQuizWebAPI.Models.CityQuizContext _context;
+
+        public HighscoreController(CityQuizWebAPI.Models.CityQuizContext context)
+        {
+            _context = context;
+        }
         // GET: api/Highscore
         [HttpGet]
         public IEnumerable<string> Get()
