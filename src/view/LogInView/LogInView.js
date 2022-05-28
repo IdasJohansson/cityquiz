@@ -2,6 +2,9 @@ import { useState, useContext } from "react";
 import { UserContext} from "../../shared/provider/UserProvider";
 import LocalStorage from "../../shared/storage/LocalStorage";
 import "./logInView.css";
+import "../../index.css"; 
+
+
 
 export const LogInView = () => {
     const [authenticatedUser, setAuthenticatedUser] = useContext(UserContext);
@@ -16,7 +19,7 @@ export const LogInView = () => {
     }; 
 
     return (
-        <div className="logIn-container">
+        <div className="container">
             <h1 className="headline"> LOG IN</h1>
             <h2 className="userName">Username: {username}</h2>
             <input placeholder="Enter username"
