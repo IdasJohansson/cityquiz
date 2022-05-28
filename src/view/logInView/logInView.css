@@ -1,0 +1,53 @@
+:root{
+    --containercolor: lightgrey;
+}
+
+
+.logIn-container {
+    width: 50%;
+    height: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: var(--containercolor);
+    text-align: center;
+    border-radius: 10px;
+    border: 1px solid black;
+    padding: 1em;
+       
+}
+
+
+.logInButton{
+    color: white;
+    background-color: black;
+    box-shadow: 1px 2px;
+    padding: 10px; 
+    margin: 2px;
+    border-radius: 5px;
+    border: 1px solid black;
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+
+}
+
+.headline   {
+    font-size: 2em;
+    font-weight: bold;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.userName   {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.passWord   {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
