@@ -10,7 +10,7 @@ export const NavigationDesktop = () => {
     return (
         <nav className="nav-desktop">
             <span className="nav-desktop-logo"> Insert logo here </span>
-            <span> Loged in user: {authenticatedUser}</span>
+            <span> Logged in user: {authenticatedUser}</span>
             <ul className="nav-desktop-list">
                 <li>
                 <Link to={RoutingPath.logInView}>LOGIN </Link>
