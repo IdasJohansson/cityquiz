@@ -5,10 +5,12 @@
     /*grid-template-columns: repeat(4, 1fr);  Gör fyra kolumner av samma storlek*/
     justify-content: center;
     align-items: center;
-    background-color: #f2f2f2;
+    background-color: var(--navcolor);
+    /*
     border-bottom: 1px solid #ccc;
-    padding: 0.5em;
-
+    */
+    padding: 0.5em; 
+    margin-bottom: 30px;
 }
 
 .nav-desktop-list {
