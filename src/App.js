@@ -1,6 +1,7 @@
 import { Navigation } from './components/navigation/Navigation';
 import {Routing} from './routes/Routes'
 import { UserProvider } from './shared/provider/UserProvider';
+import { Footer } from './components/footer/Footer';
 
 function App(){
   return (
@@ -8,7 +9,9 @@ function App(){
       <Routing>
         <Navigation/>
       </Routing>
+      <Footer/>
     </UserProvider>
+    
   )
 }
 
