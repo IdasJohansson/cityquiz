@@ -6,8 +6,8 @@ export const Footer = () => {
     return(
         <>
     <div className='footer'>
-                    <h3>About Us</h3>
-                    <p>
+                    <h3 className='headlines'>About Us</h3>
+                    <p className='paragraph'>
                     Hi,
                     Our names are Wilma Hammarshall, Ida Johansson and Maria Sliufko. 
                     We are studying object-oriented development at NBI/Handelsakadmin.
@@ -16,8 +16,8 @@ export const Footer = () => {
                     We hope you enjoy our web-app that was made as a project for school!
                     </p>
                
-                    <h3>Contact Us</h3>
-                    <ul className="linkedin-social-list">
+                    <h3 className='headlines'>Contact Us</h3>
+                    <ul className="social-list">
                     <li class="social-list__item"><a class="social-list__link"
                     href="https://www.linkedin.com/in/wilma-hammarshall/" target="_blank">Wilmas LinkedIn</a></li>
                     <li class="social-list__item"><a class="social-list__link"
@@ -27,8 +27,8 @@ export const Footer = () => {
                    </ul>
                
                 
-                    <h3>View our projects</h3>
-                    <ul className="github-social-list">
+                    <h3 className='headlines'>View our projects</h3>
+                    <ul className="social-list">
                     <li class="social-list__item"><a class="social-list__link"
                     href="https://github.com/Hammarshall" target="_blank">Wilmas GitHub</a></li>
                     <li class="social-list__item"><a class="social-list__link"
