@@ -20,38 +20,40 @@ var randomOption = Math.floor((Math.random() * maxNumber) + 1);
 var randomOption2 = Math.floor((Math.random() * maxNumber) + 1);
 // Math.floor gör att det endast blir integers. +1 är för att man även ska få med den sista raden i databasen. 
 
-    
-    const AfterClick = (correctNr,) => {
-        return (
-            <div> Test </div>
-        )
-    }
+
 
     let unKnown = Math.floor(Math.random() * 4); // Kolla upp om  dett blir mellan 1-3 eller 0-3? 
     /*
     document.querySelector("option-buttons").classList.toggle("unKnown")
     */
-   
-    return ( 
-        <>
-        <div className="question">
-                <h2>Which city is located in: {correctNr} ? </h2>
+
+    switch (unKnown) {
+        case 1:
+            <div className="option-buttons">
+            <button className="option-btn" onclick="">{correctNr}</button>
+            <button className="option-btn" onclick="">{randomOption}</button>
+            <button className="option-btn" onclick="">{randomOption2}</button>
         </div>
+        break;
+        case 2:
+            <div className="option-buttons">
+            <button className="option-btn" onclick="">{randomOption}</button>
+            <button className="option-btn" onclick="">{randomOption2}</button>
+            <button className="option-btn" onclick="">{correctNr}</button>
+        </div>
+        break; 
+        case 3: 
         <div className="option-buttons">
-        <button className="option-btn" onclick="">{correctNr}</button>
-        <button className="option-btn" onclick="">{randomOption}</button>
-        <button className="option-btn" onclick="">{randomOption2}</button>
+            <button className="option-btn" onclick="">{randomOption2}</button>
+            <button className="option-btn" onclick="">{correctNr}</button>
+            <button className="option-btn" onclick="">{randomOption}</button>
         </div>
-        <div className="option-buttons">
-        <button className="option-btn" onclick="">{randomOption}</button>
-        <button className="option-btn" onclick="">{randomOption2}</button>
-        <button className="option-btn" onclick="">{correctNr}</button>
-        </div>
-        <div className="option-buttons">
-        <button className="option-btn" onclick="">{randomOption2}</button>
-        <button className="option-btn" onclick="">{correctNr}</button>
-        <button className="option-btn" onclick="">{randomOption}</button>
-        </div>
-        </>
-        ); 
+        default:
+        break;
+    }
+
+    return (
+        <div> Return correct options here</div>
+    )
+
     }; 

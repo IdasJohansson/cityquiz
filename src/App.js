@@ -19,16 +19,3 @@ function App(){
 // Export default exporterar en komponent
 export default App; 
 
-/*
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p> THIS IS THE APP STARTPAGE</p>
-      </header>
-    </div>
-  );
-}
-
-export default App;
-*/
