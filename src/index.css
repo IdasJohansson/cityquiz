@@ -1,13 +1,14 @@
 /* Styling som gäller allt */
 :root{
-    background-color: #013328;
+    background-color: var(--backgroundcolor);
     color: black; 
     font-family:'Courier New', Courier, monospace; 
 
     --navcolor: #f2f2f2;
     --containercolor: #f2f2f2;
     --buttoncolor: #013328; 
-    --buttontextcolor: #f2f2f2; 
+    --buttontextcolor: #f2f2f2;
+    --backgroundcolor:  #013328;
 }
 
 
@@ -20,8 +21,6 @@
     background-color: var(--containercolor);
     text-align: center;
     padding: 0.5em;
-    padding: 1em;
-
     border: 4px solid black;
     box-shadow: 0px 0px 20px 5px black; 
 }
