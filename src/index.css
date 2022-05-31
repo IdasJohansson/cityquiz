@@ -1,7 +1,7 @@
 /* Styling som gäller allt */
 :root{
     background-color: var(--backgroundcolor);
-    color: black; 
+    color: var(--textcolor); 
     font-family:'Courier New', Courier, monospace; 
 
     --navcolor: #f2f2f2;
@@ -9,11 +9,23 @@
     --buttoncolor: #013328; 
     --buttontextcolor: #f2f2f2;
     --backgroundcolor:  #013328;
+    --textcolor: black; 
 }
 
 /* Styr att alla element börjar på margin 0 som grund */
 body{
     margin: 0; 
+}
+
+a{
+    color: var(--textcolor); 
+    text-decoration: none;
+}
+
+
+a:unvisited{
+    text-decoration:none;
+    color: var(--textcolor); 
 }
 
 /* Styling för rutan på alla sidor */

@@ -1,3 +1,4 @@
+
 .nav-desktop{
     width: 100%; 
     display: grid; 
@@ -6,9 +7,6 @@
     justify-content: center;
     align-items: center;
     background-color: var(--navcolor);
-    /*
-    border-bottom: 1px solid #ccc;
-    */
     padding: 0.5em; 
     margin-bottom: 30px;
 }
@@ -23,12 +21,23 @@
     gap:1em /* Gör mellanrum mellan listobjekten*/
 }
 
+.nav-desktop-link{
+    text-align: center;
+    padding: 0.5rem; 
+}
+
+.nav-desktop-link:hover {
+    background-color: var(--backgroundcolor);
+    transition: 0.5s; 
+    font-weight: 700;
+    font-size: large;
+    opacity: 0.7;
+    border-radius: 10%;
+}
+
 .nav-desktop-logo {
     grid-column: 2; 
     font-size: 1em;
     margin: 0.2rem 0; 
     padding: 0.2rem 0;
-    /*border-bottom: 1px solid #ccc; Om vi vill ha border-bottom*/
 }
-
-
