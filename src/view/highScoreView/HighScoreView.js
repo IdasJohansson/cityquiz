@@ -1,8 +1,11 @@
 import { useState, useContext } from "react";
 //osäker på hur importen ska ligga här
+import "./highScoreView.css";
+import LocalStorage from "../../shared/storage/LocalStorage";
+import "../../index.css";
 
 export const HighScoreView = () => {
-  const count = 2;
+  const count = 0;
   const questions = 10;
   const setCount = 0;
   const setCurrentQuestion = 0;
@@ -19,18 +22,34 @@ export const HighScoreView = () => {
     <>
       <div className="container">
         <div>
-          <h1>HIGHSCORE VIEW</h1>
+          <h1>HIGHSCORE</h1>
         </div>
         <div className="final-results">
-          //namnet på classen där alla resultat visas
-          <h1>Final Results</h1>
-          <h2>
+          {" "}
+          {/*namnet på classen där alla resultat visas*/}
+          <h2>Final Results</h2>
+          <h3>
             {count} out of {questions.length} correct - (
-            {(count / questions.length) * 100}%) //skriver ut hur många rätt
-            svar som har gjorts av totalt antal frågor
-          </h2>
-          <button onClick={() => restartGame()}>Restart game</button> //startar
-          om spelet
+            {(count / questions.length) * 100}%){" "}
+          </h3>
+          {/*skriver ut hur många rätt svar som har gjorts av totalt antal frågor*/}
+          <div className="top3">
+            <h3>
+              1.
+              <br />
+              2.
+              <br />
+              3.
+              <br />
+            </h3>
+          </div>
+          <button className="restartBtn" onClick={() => restartGame()}>
+            Re-start game
+          </button>{" "}
+          {/*startar om spelet*/}
+          {/*LÄGG TILL ATT VISA TOP 3*/}
+          {/*LÄGG TILL logga ut / avsluta spel knapp*/}
+          {/*ngn funktion för att få in tätt värde på rätt pats top 3*/}
         </div>
       </div>
     </>
