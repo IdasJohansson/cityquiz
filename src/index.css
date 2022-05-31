@@ -11,8 +11,12 @@
     --backgroundcolor:  #013328;
 }
 
+/* Styr att alla element börjar på margin 0 som grund */
+body{
+    margin: 0; 
+}
 
-
+/* Styling för rutan på alla sidor */
 .container {
     width: 50%;
     height: 500px;
