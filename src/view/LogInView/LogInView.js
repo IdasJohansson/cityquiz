@@ -32,6 +32,10 @@ export const LogInView = () => {
             name="password"
             onChange={(event) => setPassword(event.target.value)}/><br/>
             <button className="logInButton" type="submit" onClick={()=> logIn()}> LOG IN</button>
+
+            {/* vi vill komma till quizView vid inlogg */}
+        
+         
         </div>
     )
 }
