@@ -1,0 +1,8 @@
+.profiledropdown{
+    position: absolute; /*Fixerar klassen på en specifik position*/
+    top: 100%;
+    right: 0;
+    padding: 0.125em 0.25em;
+    background-color: lightpink;
+    display: none; /* Gör så att den inte syns förrens man hoovrar*/
+    }

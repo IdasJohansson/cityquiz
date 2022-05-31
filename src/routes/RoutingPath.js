@@ -2,9 +2,11 @@
 const logInView = '/'; 
 const quizView = "/quiz";
 const highScoreView = '/highscore'; 
+const loginView = '/login';
 
 export default {
     logInView, 
     quizView, 
-    highScoreView
+    highScoreView,
+    loginView
 }; 
