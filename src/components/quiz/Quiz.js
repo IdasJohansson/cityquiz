@@ -48,7 +48,7 @@ const randomOption2 = Math.floor((Math.random() * maxNumber) + 1);
             // OBS! break, ligger fel, ser inte vart de ska vara? Ligger som Unreachable code just nu... 
             case 1:
                 return (
-                <> 
+                    <> 
                 <div className="question">
                 <h2>Which city is located in: {correctNr} ? </h2>
                 Case 1. Om man svarar så ska count öka här: {count} :) 

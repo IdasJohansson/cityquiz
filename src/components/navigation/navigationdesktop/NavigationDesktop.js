@@ -12,13 +12,13 @@ export const NavigationDesktop = () => {
             <span className="nav-desktop-logo"> Insert logo here </span>
             <span> Logged in user: {authenticatedUser}</span>
             <ul className="nav-desktop-list">
-                <li>
+                <li className="nav-desktop-link">
                 <Link to={RoutingPath.logInView}>LOGIN </Link>
                 </li>
-                <li>
+                <li className="nav-desktop-link">
                 <Link to={RoutingPath.quizView}>QUIZ</Link>
                 </li>
-                <li>
+                <li className="nav-desktop-link">
                 <Link to={RoutingPath.highScoreView}> HIGH SCORE</Link>
                 </li>
             </ul>
