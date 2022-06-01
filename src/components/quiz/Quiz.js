@@ -53,10 +53,11 @@ const randomOption2 = Math.floor((Math.random() * maxNumber) + 1);
                 <h2>Which city is located in: {correctNr} ? </h2>
                 Case 1. Om man svarar så ska count öka här: {count} :) 
                 </div>
+                {/* lägg till onChange={(event) => setInput(event.target.value)*/}
                 <div className="option-buttons"> 
-                <button className="option-btn" value={isCorrect} onClick={()=> CheckAnswer()}> {correctNr} </button>
-                <button className="option-btn" value={isCorrect} onClick={() => CheckAnswer()}>{randomOption}</button>
-                <button className="option-btn" value={isCorrect} onClick={() => CheckAnswer()}>{randomOption2}</button>
+                <button className="option-btn" value={correctNr} onClick={()=> CheckAnswer()}> {correctNr} </button>
+                <button className="option-btn" value={randomOption} onClick={() => CheckAnswer()}>{randomOption}</button>
+                <button className="option-btn" value={randomOption2} onClick={() => CheckAnswer()}>{randomOption2}</button>
                 </div>
                 </>
                 )
