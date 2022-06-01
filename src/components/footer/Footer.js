@@ -57,9 +57,7 @@ export const Footer = () => {
             
         
     </div>
-    </>
-);
->>>>>>> b9b24f75e927983d46c357bb10d9ee9dced2bd3e
+    </>);
 
         <h3 className="headlines">Contact Us</h3>
         <ul className="social-list">
