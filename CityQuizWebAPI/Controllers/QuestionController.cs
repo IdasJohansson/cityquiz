@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using CityQuizWebAPI.Models; 
 
 namespace CityQuizWebAPI.Controllers
 {
@@ -13,24 +14,34 @@ namespace CityQuizWebAPI.Controllers
     { //Class that handle incoming browser requests, retrieve model data, 
     //and then specify view templates that return a response to the browser.
 
-        private readonly CityQuizWebAPI.Models.CityQuizContext _context;
+        private readonly cityQuizDBContext _context;
 
-        public QuestionController(CityQuizWebAPI.Models.CityQuizContext context)
+        public QuestionController(cityQuizDBContext context)
         {
             _context = context;
         }
+
+        /*
         // GET: api/Question
         [HttpGet]
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
         }
+        */
 
         // GET: api/Question/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Question>> GetQuestionById(int id)
         {
-            return "value";
+            var question = await _context.Questions.FindAsync(3);
+
+            if (question == null)
+            {
+                return NotFound();
+            }
+
+            return question;
         }
 
         // POST: api/Question
