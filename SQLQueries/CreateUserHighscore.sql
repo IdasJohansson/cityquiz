@@ -21,3 +21,12 @@ CREATE TABLE HighScore (
 );
 GO
 
+INSERT INTO Users ( userName, password) values ('Maria', 'P@ssw0rd');
+GO
+INSERT INTO Users ( userName, password) values ('Ida', 'P@ssw0rd');
+GO
+INSERT INTO Users ( userName, password) values ('Wilma', 'P@ssw0rd');
+GO
+
+SELECT * FROM Users; 
+SELECT * FROM HighScore; 
