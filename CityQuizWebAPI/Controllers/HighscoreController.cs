@@ -21,7 +21,7 @@ namespace CityQuizWebAPI.Controllers
             _context = context;
         }
 
-     /*
+     
         // GET: api/Highscore
         [HttpGet]
         public IEnumerable<string> Get()
@@ -54,6 +54,6 @@ namespace CityQuizWebAPI.Controllers
         public void Delete(int id)
         {
         }
-     */
+  
     }
 }
