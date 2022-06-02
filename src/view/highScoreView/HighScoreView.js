@@ -3,12 +3,13 @@ import { useState, useContext } from "react";
 import "./highScoreView.css";
 import LocalStorage from "../../shared/storage/LocalStorage";
 import "../../index.css";
+import "../../components/quiz/Quiz"; //import Quiz
 
 export const HighScoreView = () => {
-  const count = 0;
-  const questions = 10;
-  const setCount = 0;
-  const setCurrentQuestion = 0;
+  const count = 0; //Antalet frågor som ska visas
+  const questions = 10; //Antal frågor
+  const setCount = 0; //Antal rätt svar
+  const setCurrentQuestion = 0; //Frågan som visas
 
   const [showResults, setShowResults] = useState(false); //tillhör idas on clickevent
   const restartGame = () => {
