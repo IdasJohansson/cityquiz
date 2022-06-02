@@ -8,10 +8,12 @@ import "../../index.css";
 
 export const LogInView = () => {
     const [authenticatedUser, setAuthenticatedUser] = useContext(UserContext);
-    const [username, setUserName] = useState("Anna"); // Lagrar och uppdaterar username 
+    const [username, setUserName] = useState(); // Lagrar och uppdaterar username 
     const [password, setPassword] = useState(); // Lagrar och uppdaterar password
 
     const logIn = () => {
+        // Lägg in axios get. 
+
         setAuthenticatedUser(username); 
         // localStorage är ett namn som finns i webbläsaren 
         // lokalstorage.username är key, username är value

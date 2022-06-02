@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using CityQuizWebAPI.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace CityQuizWebAPI.Controllers
 {
@@ -60,5 +61,12 @@ namespace CityQuizWebAPI.Controllers
         public void Delete(int id)
         {
         }
+
+        [HttpGet("/Login")]
+        public async Task<bool> CheckLogin(User user)
+        {
+            return await _context.Users.AnyAsync(u => u.UserName == user.UserName && u.Password == user.Password); 
+        }
+
     }
 }
