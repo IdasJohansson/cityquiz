@@ -34,7 +34,7 @@ namespace CityQuizWebAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Question>> GetQuestionById(int id)
         {
-            var question = await _context.Questions.FindAsync(3);
+            var question = await _context.Questions.FindAsync(id);
 
             if (question == null)
             {
