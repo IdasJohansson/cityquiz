@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using CityQuizWebAPI.Models;
 
 namespace CityQuizWebAPI.Controllers
 {
@@ -12,9 +13,9 @@ namespace CityQuizWebAPI.Controllers
     public class UserController : ControllerBase
     {//Class that handle incoming browser requests, retrieve model data, 
     //and then specify view templates that return a response to the browser.
-        private readonly CityQuizWebAPI.Models.CityQuizContext _context;
+        private readonly cityQuizDBContext _context;
 
-        public UserController(CityQuizWebAPI.Models.CityQuizContext context)
+        public UserController(cityQuizDBContext context)
         {
             _context = context;
         }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using CityQuizWebAPI.Models;
 
 namespace CityQuizWebAPI.Controllers
 {
@@ -12,18 +13,22 @@ namespace CityQuizWebAPI.Controllers
     public class HighscoreController : ControllerBase
     {//Class that handle incoming browser requests, retrieve model data, 
     //and then specify view templates that return a response to the browser.
-        private readonly CityQuizWebAPI.Models.CityQuizContext _context;
 
-        public HighscoreController(CityQuizWebAPI.Models.CityQuizContext context)
+        private readonly cityQuizDBContext _context;
+
+        public HighscoreController(cityQuizDBContext context)
         {
             _context = context;
         }
+
+     /*
         // GET: api/Highscore
         [HttpGet]
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
         }
+
 
         // GET: api/Highscore/5
         [HttpGet("{id}", Name = "Get")]
@@ -49,5 +54,6 @@ namespace CityQuizWebAPI.Controllers
         public void Delete(int id)
         {
         }
+     */
     }
 }
