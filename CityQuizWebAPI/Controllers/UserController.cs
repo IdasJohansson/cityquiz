@@ -19,18 +19,28 @@ namespace CityQuizWebAPI.Controllers
         {
             _context = context;
         }
+
+        /*
         // GET: api/User
         [HttpGet]
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
         }
+        */
 
         // GET: api/User/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<User>> GetUserById(int id)
         {
-            return "value";
+            var user = await _context.Users.FindAsync(id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return user;
         }
 
         // POST: api/User
