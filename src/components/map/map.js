@@ -7,7 +7,8 @@ export const Map = () => {
     <div className="googleMap">
 
          <img className='icon-questionmark' src ={logo512} alt = "Questionmarklogo"/> 
-
          
     </div>); 
     }; 
+
+    
