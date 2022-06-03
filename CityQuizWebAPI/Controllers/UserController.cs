@@ -78,10 +78,12 @@ namespace CityQuizWebAPI.Controllers
             return NoContent();
         }
 
-        //  F?r att kolla om en anv?ndare finns i databasen genom att kolla om username och password finns d?r, anv?nds vid login
-        [HttpGet("Login")]
+        //  F?r att kolla om en anv?ndare finns i databasen genom att kolla om username och password finns d?r, anv?nds vid login. 
+        [HttpPost("CheckLogin")] // Tar in ett User objekt som vi döper till user, detta är en get metod. 
         public async Task<bool> CheckLogin(User user)
         {
+            // Går in i userstabellen och kollar om det finns något som matchar. Kollar om objektet som vi kallar för u är samma som user som är lagrat i databasen. (Både för Username och Password)
+            // Returnerar true om det stämmer, annars false. 
             return await _context.Users.AnyAsync(u => u.UserName == user.UserName && u.Password == user.Password);
         }
 
