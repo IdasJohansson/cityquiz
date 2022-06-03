@@ -22,7 +22,7 @@ export const LogInView = () => {
          /*
         const checkUserDb = async () => {
         try{
-            const BASE_URL = "http://localhost:3000"; 
+            const BASE_URL = "http://localhost:44357"; 
             const response = await Axios.get(BASE_URL);
             setServerResponse(response);
             console.log(serverResponse.data?.username);
