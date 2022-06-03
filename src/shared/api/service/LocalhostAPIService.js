@@ -1,4 +1,4 @@
-import http from "../LoginAPI";
+import http from "../LocalhostAPI";
 
 const getLoginCheck = () => {
     // Ej klart här. 

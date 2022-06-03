@@ -6,3 +6,5 @@ const getGoogleMap = () => {
 }; 
 
 export default {getGoogleMap}
+
+// Addera parametrar center, zoom, longitude and latitude i return så att api-anropet blir rätt
