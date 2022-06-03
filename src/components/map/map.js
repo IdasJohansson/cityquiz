@@ -11,5 +11,6 @@ export const Map = () => {
     </div>); 
     }; 
 
-// Addera parametrar center, zoom, longitude and latitude så att api-anropet blir rätt :)
+// Addera parametrar center, zoom, longitude and latitude så att api-anropet blir rätt 
+// 
     
