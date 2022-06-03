@@ -4,7 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using CityQuizWebAPI.Models; 
+using CityQuizWebAPI.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace CityQuizWebAPI.Controllers
 {
@@ -21,14 +22,14 @@ namespace CityQuizWebAPI.Controllers
             _context = context;
         }
 
-        /*
+        
         // GET: api/Question
-        [HttpGet]
-        public IEnumerable<string> Get()
+        [HttpGet("GetQuestions")] // Om man skulle behöva hämta alla frågor
+        public async Task<ActionResult<IEnumerable<Question>>> GetAllQuestions()
         {
-            return new string[] { "value1", "value2" };
+            return await _context.Questions.ToListAsync();
         }
-        */
+
 
         // GET: api/Question/5
         [HttpGet("{id}")]
@@ -58,8 +59,19 @@ namespace CityQuizWebAPI.Controllers
 
         // DELETE: api/Question/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<ActionResult<Question>> DeleteQuestion(int id)
         {
+            var question = await _context.Questions.FindAsync(id);
+
+            if (question == null)
+            {
+                return NotFound();
+            }
+
+            _context.Questions.Remove(question);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
         }
     }
 }

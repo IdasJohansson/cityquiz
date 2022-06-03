@@ -61,7 +61,7 @@ const randomOption2 = Math.floor((Math.random() * maxNumber) + 1);
                 </div>
                 </>
                 )
-                break;
+            
             case 2:
                 return (
                 <> 
@@ -77,7 +77,7 @@ const randomOption2 = Math.floor((Math.random() * maxNumber) + 1);
                 </div>
                 </>
                 )
-                break; 
+        
             case 3: 
                 return (
                 <> 
@@ -93,7 +93,7 @@ const randomOption2 = Math.floor((Math.random() * maxNumber) + 1);
                  </div>
                  </>
             )
-            break;
+  
             default: 
                 <p>Something went wrong...</p>
                break; 

@@ -21,17 +21,17 @@ namespace CityQuizWebAPI.Controllers
             _context = context;
         }
 
-        /*
-        // GET: api/User
-        [HttpGet]
-        public IEnumerable<string> Get()
+        // Om man skulle beh?va h?mta alla anv?ndare
+        // GET: api/User/Getusers
+        [HttpGet("GetUsers")] // Unik URL
+        public async Task<ActionResult<IEnumerable<User>>> GetAllUsers()
         {
-            return new string[] { "value1", "value2" };
+            return await _context.Users.ToListAsync();
         }
-        */
 
+        // H?mtar en anv?ndare
         // GET: api/User/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}")] // URL genom variabeln id
         public async Task<ActionResult<User>> GetUserById(int id)
         {
             var user = await _context.Users.FindAsync(id);
@@ -44,10 +44,15 @@ namespace CityQuizWebAPI.Controllers
             return user;
         }
 
+        // F?r att eventuellt kunna l?gga till en ny anv?ndare
         // POST: api/User
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<ActionResult<User>> CreateUser(User user)
         {
+            _context.Users.Add(user);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetUserById", new { id = user.Id }, user);
         }
 
         // PUT: api/User/5
@@ -58,14 +63,26 @@ namespace CityQuizWebAPI.Controllers
 
         // DELETE: api/User/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<ActionResult<User>> DeleteUser(int id)
         {
+            var user = await _context.Users.FindAsync(id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            _context.Users.Remove(user);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
         }
 
-        [HttpGet("/Login")]
+        //  F?r att kolla om en anv?ndare finns i databasen genom att kolla om username och password finns d?r, anv?nds vid login
+        [HttpGet("Login")]
         public async Task<bool> CheckLogin(User user)
         {
-            return await _context.Users.AnyAsync(u => u.UserName == user.UserName && u.Password == user.Password); 
+            return await _context.Users.AnyAsync(u => u.UserName == user.UserName && u.Password == user.Password);
         }
 
     }

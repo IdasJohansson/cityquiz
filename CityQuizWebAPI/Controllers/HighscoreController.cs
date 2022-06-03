@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using CityQuizWebAPI.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace CityQuizWebAPI.Controllers
 {
@@ -23,18 +24,25 @@ namespace CityQuizWebAPI.Controllers
 
      
         // GET: api/Highscore
-        [HttpGet]
-        public IEnumerable<string> Get()
+        [HttpGet("GetHighScores")] // Kan h?mta alla highscores
+        public async Task<ActionResult<IEnumerable<HighScore>>> GetAllHighScores()
         {
-            return new string[] { "value1", "value2" };
+            return await _context.HighScores.ToListAsync();
         }
 
 
         // GET: api/Highscore/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        [HttpGet("{id}")] // H?mtar ett specifikt highscore
+        public async Task<ActionResult<HighScore>> GetHighScoreById(int id)
         {
-            return "value";
+            var highscore = await _context.HighScores.FindAsync(id);
+
+            if (highscore == null)
+            {
+                return NotFound();
+            }
+
+            return highscore;
         }
 
         // POST: api/Highscore
@@ -51,9 +59,20 @@ namespace CityQuizWebAPI.Controllers
 
         // DELETE: api/Highscore/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<ActionResult<HighScore>> DeleteHighScore(int id)
         {
+            var highscore = await _context.HighScores.FindAsync(id);
+
+            if (highscore == null)
+            {
+                return NotFound();
+            }
+
+            _context.HighScores.Remove(highscore);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
         }
-  
+
     }
 }
