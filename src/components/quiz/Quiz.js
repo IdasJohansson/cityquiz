@@ -5,6 +5,7 @@ import RoutingPath from "../../routes/RoutingPath"
 import { Map } from "../map/Map";
 import LocalhostAPI from "../../shared/api/LocalhostAPI"; // Denna ska användas om man kör axios get? 
 import {getQuestion, getAnswerCheck} from "../../shared/api/service/LocalhostAPIService"
+import Axios from "axios";
 
 // Lägg till en useEffect() som renderar om sidan varje gång man har svarat på en fråga. 
 // Hämta lat och lng from question objectet. 
@@ -20,10 +21,25 @@ const [option2, setOption2] = useState(0);
 const [option3, setOption3] = useState(0); 
 
 const [count, setCount] = useState(0);
+
 /*
 const [question, setQuestion] = useState({id:null,countryname:null, cityname:null, long:null, lati:null });
 */
-const [question, setQuestion] = useState(1); 
+
+const [question, setQuestion] = useState({}); 
+const [serverRespose, setServerRespose] = useState();
+
+const fetchData = async () => {
+    const API_URL = "https://localhost:5001/api/Question/1";
+    try {
+            const response = await Axios.get(API_URL);
+            setServerRespose(response);
+          } catch (error) {
+            alert("Error retrieving desired data from server: " + error);
+          }
+        
+};
+
 const navigate = useNavigate(); 
 
 const maxNumber = 100; // Detta ska vara antal rader i databasen ---> gör om till antal rader
@@ -38,7 +54,9 @@ const randomOption2 = Math.floor((Math.random() * maxNumber) + 1);
     // unKnown styr switch-satsen. 
     const unKnown =   Math.floor(Math.random() * 3) + 1; // Slumpar ett nummer mellan 1 och 3
     
-        /*
+    
+    // fel 415 unsupported media type, hämtar fel format...Behöver troligtvis dekonstukta objektet?
+    /*
     const CheckAnswer = () => {
         // getAnswerCheck ska returnera true eller false (just nu är den true pga kollar på alla objekt i db)
         try {
@@ -61,11 +79,17 @@ const randomOption2 = Math.floor((Math.random() * maxNumber) + 1);
         }
     }; 
     */
-
+    
+    
+    
     const CheckAnswer = () => {
         // Metod ovan är utkommenterad just nu pga att den inte funkar helt hundra :D 
         setCount(count +1)
+
+      console.log(getQuestion(question))
     }
+    
+    
 
    const Options =() => {
         switch (1) {
@@ -75,6 +99,8 @@ const randomOption2 = Math.floor((Math.random() * maxNumber) + 1);
                 <div className="question">
                 <h2>Which city is located in: {correctNr} ? </h2>
                 Case 1. Om man svarar så ska count öka här: {count} :) 
+                <h2>{serverRespose?.data?.country}</h2>
+                <button className="option-btn" onClick={() => fetchData()}> Test </button>
                 </div>
                 {/* lägg till onChange={(event) => setInput(event.target.value)*/}
                 <div className="option-buttons"> 
