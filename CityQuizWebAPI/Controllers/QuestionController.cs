@@ -73,12 +73,5 @@ namespace CityQuizWebAPI.Controllers
 
             return NoContent();
         }
-
-        [HttpGet("CheckAnswer")]
-        public async Task<bool> CheckAnswer(Question question)
-        {
-            // Returnerar true om det är rätt, annars false. 
-            return await _context.Questions.AnyAsync(x => x.Id == question.Id);
-        }
     }
 }
