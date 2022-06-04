@@ -9,6 +9,7 @@ export const getLoginCheck = async (user) => {
     return response.json()
 }; 
 
+
 /*
 // Hämtar ett questionobject
 export const getQuestion = async (question) => {
@@ -20,15 +21,16 @@ export const getQuestion = async (question) => {
 }; 
 */
 
+
 const getQuestion = async () => {
-    return await http.get("/Question/1")
+    return await http.get("Question/1")
 }
 export {getQuestion}
 
 
 // Ska kolla om man har svarat rätt i db, returnerar true eller false. 
 const getAnswerCheck = async () => {
-    return await http.get("/Question/CheckAnswer")
+    return await http.get("Question/CheckAnswer")
 }; 
 export {getAnswerCheck}; 
 
