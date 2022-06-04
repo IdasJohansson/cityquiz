@@ -1,7 +1,8 @@
 import "./quiz.css"
-import { useState, useContext, useEffect } from "react"; 
+import React, { useState, useContext, useEffect } from "react"; 
 import { useNavigate } from "react-router-dom";
 import RoutingPath from "../../routes/RoutingPath"
+import { Map } from "../map/Map";
 
 
 export const Quiz = () => {
@@ -100,6 +101,9 @@ const randomOption2 = Math.floor((Math.random() * maxNumber) + 1);
         }
     }
     return (
+        <React.Fragment> 
+        <Map lat={57.7088} lng={11.9745} /> 
         <Options/>
+        </React.Fragment>
     )
     }; 
