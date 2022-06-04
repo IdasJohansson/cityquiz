@@ -2,9 +2,13 @@ import "./quiz.css"
 import { useState, useContext, useEffect } from "react"; 
 import { useNavigate } from "react-router-dom";
 import RoutingPath from "../../routes/RoutingPath"
+import LocalhostAPIService from "../../shared/api/service/LocalhostAPIService"
 
 
 export const Quiz = () => {
+    /*
+    const {data} = LocalhostAPIService.getAnswerCheck(); 
+    */ 
 
 // Måste skicka med vära värden här :)(:
 // setCounty ska väl vara lika med correctNr? 
@@ -45,7 +49,7 @@ const randomOption2 = Math.floor((Math.random() * maxNumber) + 1);
 
    const Options =() => {
         switch (unKnown) {
-            // OBS! break, ligger fel, ser inte vart de ska vara? Ligger som Unreachable code just nu... 
+     
             case 1:
                 return (
                     <> 
