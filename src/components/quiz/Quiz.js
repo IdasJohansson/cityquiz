@@ -1,5 +1,5 @@
 import "./quiz.css"
-import React, { useState, useContext, useEffect } from "react"; 
+import { useState, useContext, useEffect } from "react"; 
 import { useNavigate } from "react-router-dom";
 import RoutingPath from "../../routes/RoutingPath"
 import { Map } from "../map/Map";
