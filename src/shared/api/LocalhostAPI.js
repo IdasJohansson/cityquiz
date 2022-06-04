@@ -1,7 +1,7 @@
 import axios from 'axios'; 
 
-const LoginAPI = axios.create({
-    baseURL: "http://localhost:5001/api/"
+const LocalhostAPI = axios.create({
+    baseURL: "https://localhost:5001/api/"
 }); 
 
-export default LoginAPI; 
+export default LocalhostAPI; 

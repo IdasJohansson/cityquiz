@@ -32,7 +32,7 @@ namespace CityQuizWebAPI.Controllers
 
 
         // GET: api/Question/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}")] // Hämtar ett Question object
         public async Task<ActionResult<Question>> GetQuestionById(int id)
         {
             var question = await _context.Questions.FindAsync(id);
@@ -73,5 +73,14 @@ namespace CityQuizWebAPI.Controllers
 
             return NoContent();
         }
+
+        [HttpGet("CheckAnswer")]
+        public async Task<bool> CheckAnswer(Question question)
+        {
+            // Ska returnera true om det är rätt svar, annars false. Pekar just nu på any,så allt är true
+            // Använd FindAsync och skicka med ett id i metoden? 
+            return await _context.Questions.AnyAsync(x => x.Id == question.Id);
+        }
+
     }
 }
