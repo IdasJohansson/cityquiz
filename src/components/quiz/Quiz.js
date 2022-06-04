@@ -13,8 +13,9 @@ import Axios from "axios";
 // Gör så att nästa fråga visas när man har tryckt på ett option oavsett true eller false i CheckAnswer
 
 export const Quiz = () => {
-// Måste skicka med vära värden här :)(:
-// setCounty ska väl vara lika med correctNr? 
+
+const navigate = useNavigate(); 
+
 const [country, setCountry] = useState(0); 
 const [option1, setOption1] = useState(0); 
 const [option2, setOption2] = useState(0); 
@@ -27,22 +28,11 @@ const [question, setQuestion] = useState({id:null,countryname:null, cityname:nul
 */
 
 const [question, setQuestion] = useState({}); 
-const [serverRespose, setServerRespose] = useState();
+const [serverResponse, setServerResponse] = useState();
+const [serverResponse2, setServerResponse2] = useState();
+const [serverResponse3, setServerResponse3] = useState();
 
-const fetchData = async () => {
-    const API_URL = "https://localhost:5001/api/Question/1";
-    try {
-            const response = await Axios.get(API_URL);
-            setServerRespose(response);
-          } catch (error) {
-            alert("Error retrieving desired data from server: " + error);
-          }
-        
-};
-
-const navigate = useNavigate(); 
-
-const maxNumber = 100; // Detta ska vara antal rader i databasen ---> gör om till antal rader
+const maxNumber = 20; // Detta ska vara antal rader i databasen ---> gör om till antal rader
 // ---> Svagheter: Slumpen kan göra att "rätt" svar visas på två ställen men bara ett är rätt. 
 // Detta är randomgeneratorn som slumpar fram landet samt den rätta staden
 const correctNr = Math.floor((Math.random() * maxNumber) + 1); 
@@ -50,6 +40,42 @@ const correctNr = Math.floor((Math.random() * maxNumber) + 1);
 const randomOption = Math.floor((Math.random() * maxNumber) + 1);
 const randomOption2 = Math.floor((Math.random() * maxNumber) + 1);
 // Math.floor gör att det endast blir integers. +1 är för att man ska börja på 1. 
+
+
+const fetchData = async () => {
+    const API_URL =`https://localhost:5001/api/Question/${correctNr}`;
+    try {
+            const response = await Axios.get(API_URL);
+            setServerResponse(response);
+          } catch (error) {
+            alert("Error retrieving desired data from server: " + error);
+          }
+        
+};
+
+/*
+const fetchData2 = async () => {
+    const API_URL =`https://localhost:5001/api/Question/${randomOption}`;
+    try {
+            const response2 = await Axios.get(API_URL);
+            setServerResponse2(response2);
+          } catch (error) {
+            alert("Error retrieving desired data from server: " + error);
+          }
+        
+};
+
+const fetchData3 = async () => {
+    const API_URL =`https://localhost:5001/api/Question/${randomOption2}`;
+    try {
+            const response3 = await Axios.get(API_URL);
+            setServerResponse3(response3);
+          } catch (error) {
+            alert("Error retrieving desired data from server: " + error);
+          }
+        
+};
+*/
 
     // unKnown styr switch-satsen. 
     const unKnown =   Math.floor(Math.random() * 3) + 1; // Slumpar ett nummer mellan 1 och 3
@@ -80,33 +106,27 @@ const randomOption2 = Math.floor((Math.random() * maxNumber) + 1);
     }; 
     */
     
-    
-    
     const CheckAnswer = () => {
         // Metod ovan är utkommenterad just nu pga att den inte funkar helt hundra :D 
         setCount(count +1)
-
-      console.log(getQuestion(question))
+        console.log(getQuestion(question))
     }
     
-    
-
    const Options =() => {
         switch (1) {
             case 1:
                 return (
                 <> 
                 <div className="question">
-                <h2>Which city is located in: {correctNr} ? </h2>
+                <h2>Which city is located in: {serverResponse?.data?.country} ? </h2>
                 Case 1. Om man svarar så ska count öka här: {count} :) 
-                <h2>{serverRespose?.data?.country}</h2>
-                <button className="option-btn" onClick={() => fetchData()}> Test </button>
+                <button className="option-btn" onClick={() => fetchData()}> Hämtar data </button>
                 </div>
                 {/* lägg till onChange={(event) => setInput(event.target.value)*/}
                 <div className="option-buttons"> 
-                <button className="option-btn" value={correctNr} onClick={()=> CheckAnswer()}> {correctNr} </button>
-                <button className="option-btn" value={randomOption} onClick={() => CheckAnswer()}>{randomOption}</button>
-                <button className="option-btn" value={randomOption2} onClick={() => CheckAnswer()}>{randomOption2}</button>
+                <button className="option-btn" value={correctNr} onClick={()=> CheckAnswer()}> {serverResponse?.data?.city} </button>
+                <button className="option-btn" value={randomOption} onClick={() => CheckAnswer()}>{serverResponse?.data?.city}</button>
+                <button className="option-btn" value={randomOption2} onClick={() => CheckAnswer()}>{serverResponse?.data?.city}</button>
                 </div>
                 </>
                 )
