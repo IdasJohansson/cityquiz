@@ -11,40 +11,29 @@ import {getLoginCheck} from "../../shared/api/service/LocalhostAPIService"
 
 
 export const LogInView = () => {
-    const [authenticatedUser, setAuthenticatedUser] = useContext(UserContext);
-    const [username, setUserName] = useState(); // Lagrar och uppdaterar username 
-    const [password, setPassword] = useState(); // Lagrar och uppdaterar password, ta bort denna? password är ju lagrat i databasen...?
+    const [AuthenticatedUser, setAuthenticatedUser] = useContext(UserContext);
     const navigate = useNavigate(); 
     const [user, setUser] = useState({inputusername:null, inputpassword:null});
-
-    const [serverResponse, setServerResponse] = useState();
-    // Lägg in axios get som kollar om användaren finns i databasen. Går det att logga in (om användaren finns i databasen) så sparar man användaren i localstorage
-    // annars så kan man få ett felmedelande
-    // Detta ska ske innan setauthenticated user, 
-    const checkUserDb = async () => {
+    
+    const logIn = () => {
+   
         try{
-            /*
-            const BASE_URL = "https://localhost:44357/api/User/CheckLogin"; 
-            const response = await Axios.get(BASE_URL);
-            */
-
-            getLoginCheck(user)
+           
+            getLoginCheck(user).then(response => {
+                if(response === true){
+                    setAuthenticatedUser(user.inputusername);
+                    navigate(RoutingPath.quizView); // Lägg till här vart man skickas efter inlogg. 
+                }
+                else{
+                    alert("Invalid USERNAME or PASSWORD")
+                }
+            });   
            
         }catch(error) {
             console.log(error); 
             alert("Invalid USERNAME or PASSWORD")
             }
-        };
-    const logIn = () => {
-        setUser((prevState) => ({...prevState,inputusername:username, inputpassword:password})) // Någonting är fel här hehe, hittar ej objeket 
-        console.log(user)
-        checkUserDb(); 
-        setAuthenticatedUser(username); 
-        // localStorage är det som sparas i webbläsaren 
-        // lokalstorage.username är key, username är value
-        localStorage.setItem(LocalStorage.username, username); // key, value
-        navigate(RoutingPath.quizView); // Lägg till här vart man skickas efter inlogg. 
-    }; 
+        }; 
 
     return (
         <div className="container">
