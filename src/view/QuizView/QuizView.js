@@ -1,7 +1,7 @@
 import { useState, useContext } from "react"; 
 import "./quizView.css"
 import "../../index.css"; 
-import {Map} from "../../components/map/Map.js"; 
+import {Map} from "../../components/map/map.js"; 
 import { Quiz } from "../../components/quiz/Quiz";
 
 export const QuizView = () => {
