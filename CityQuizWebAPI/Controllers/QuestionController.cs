@@ -45,6 +45,24 @@ namespace CityQuizWebAPI.Controllers
             return question;
         }
 
+
+        // GET: api/Question/random
+        [HttpGet("Random")] // Hämtar ett Random Question object
+        public async Task<ActionResult<Question>> GetQuestionByIdRandom()
+        {
+            Random rnd = new Random();
+            // 20 är antal rader i databasen. 
+            int randomid = rnd.Next(1, 20 + 1);
+
+            var question = await _context.Questions.FindAsync(randomid);
+
+            if (question == null)
+            {
+                return NotFound();
+            }
+            return question;
+        }
+
         // POST: api/Question
         [HttpPost]
         public void Post([FromBody] string value)
