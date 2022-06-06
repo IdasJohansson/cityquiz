@@ -102,8 +102,8 @@ const WrapperFunction = () => {
         // I denna ska vi också lägga till så att cordinaterna till maps, läggs in så att rätt svar visas på kartan. 
     }
     
-        // unKnown styr switch-satsen. 
-        const unKnown =   Math.floor(Math.random() * 3) + 1; // Slumpar ett nummer mellan 1 och 3
+    // unKnown styr switch-satsen. 
+    const unKnown =   Math.floor(Math.random() * 3) + 1; // Slumpar ett nummer mellan 1 och 3
 
    const Options =() => {
         switch (unKnown) {
@@ -111,9 +111,9 @@ const WrapperFunction = () => {
                 return (
                 <> 
                 <div className="question">
+                <button className="option-btn" onClick={() => WrapperFunction()}>Fetch Country</button>
                 <h2>Which city is located in: {serverResponse?.data?.country} ? </h2>
                 Case 1. Om man svarar så ska count öka här: {count} 
-                <button className="option-btn" onClick={() => WrapperFunction()}>Fetch Country</button>
                 </div>
                 {/* lägg till onChange={(event) => setInput(event.target.value)*/}
                 <div className="option-buttons"> 
@@ -127,9 +127,9 @@ const WrapperFunction = () => {
                 return (
                 <> 
                 <div className="question">
+                <button className="option-btn" onClick={() => WrapperFunction()}>Fetch Country + Next Country</button>
                 <h2>Which city is located in: {serverResponse?.data?.country} ? </h2>
                 Case 2. Om man svarar så ska count öka här:{count} 
-                <button className="option-btn" onClick={() => WrapperFunction()}>Fetch Country</button>
                 </div>   
                 <div className="option-buttons">
                 <button className="option-btn" value={serverResponse2?.data?.city} onClick={()=> CheckAnswer()}> {serverResponse2?.data?.city} </button>
@@ -143,9 +143,9 @@ const WrapperFunction = () => {
                 return (
                 <> 
                 <div className="question">
+                <button className="option-btn" onClick={() => WrapperFunction()}>Fetch Country</button>
                 <h2>Which city is located in: {serverResponse?.data?.country} ? </h2>
                 Case 3. Om man svarar så ska count öka här: {count} 
-                <button className="option-btn" onClick={() => WrapperFunction()}>Fetch Country</button>
                 </div>
                 <div className="option-buttons">
                 <button className="option-btn" value={serverResponse3?.data?.city} onClick={()=> CheckAnswer()}> {serverResponse3?.data?.city} </button>
@@ -161,7 +161,7 @@ const WrapperFunction = () => {
     }
     return (
         <React.Fragment> 
-            <Map lat={57.7088} lng={11.9745} /> 
+            <Map lat={57.7088} lng={11.9745} />
             {/*  <Map lat={+serverResponse?.data?.longitude} lng={+serverResponse?.data?.latitude} /> */}
         <Options/>
         </React.Fragment>
@@ -169,16 +169,3 @@ const WrapperFunction = () => {
     }; 
 
 
-
-/*
-const fetchData = async () => {
-    const API_URL =`https://localhost:5001/api/Question/${correctNr}`;
-    try {
-            const response = await Axios.get(API_URL);
-            setServerResponse(response);
-          } catch (error) {
-            alert("Error retrieving desired data from server: " + error);
-          }
-        
-};
-*/ 
