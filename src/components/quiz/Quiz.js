@@ -8,42 +8,31 @@ import {getQuestion, getAnswerCheck} from "../../shared/api/service/LocalhostAPI
 import Axios from "axios";
 
 // Lägg till en useEffect() som renderar om sidan varje gång man har svarat på en fråga. 
+// Byt ut FetchCountry knappen mot en useEffect() 
 // Hämta lat och lng from question objectet. 
 // Gör så att rätt svar visas på map när man har tryckt på ett option. 
 // Gör så att nästa fråga visas när man har tryckt på ett option oavsett true eller false i CheckAnswer
+// ---> Svagheter: Slumpen kan göra att "rätt" svar visas på två ställen men bara ett är rätt. 
 
 export const Quiz = () => {
-
 const navigate = useNavigate(); 
-
-const [country, setCountry] = useState(0); 
-const [option1, setOption1] = useState(0); 
-const [option2, setOption2] = useState(0); 
-const [option3, setOption3] = useState(0); 
-
 const [count, setCount] = useState(0);
-
 /*
 const [question, setQuestion] = useState({id:null,countryname:null, cityname:null, long:null, lati:null });
 */
-
 const [question, setQuestion] = useState({}); 
+
+// Här i når man city och country, long och latitude
+// Detta är "rätt land och stad"
 const [serverResponse, setServerResponse] = useState();
+// Detta är random city2
 const [serverResponse2, setServerResponse2] = useState();
+// Detta är random city3
 const [serverResponse3, setServerResponse3] = useState();
 
-const maxNumber = 20; // Detta ska vara antal rader i databasen ---> gör om till antal rader
-// ---> Svagheter: Slumpen kan göra att "rätt" svar visas på två ställen men bara ett är rätt. 
-// Detta är randomgeneratorn som slumpar fram landet samt den rätta staden
-const correctNr = Math.floor((Math.random() * maxNumber) + 1); 
-// Slumpar fram två andra options
-const randomOption = Math.floor((Math.random() * maxNumber) + 1);
-const randomOption2 = Math.floor((Math.random() * maxNumber) + 1);
-// Math.floor gör att det endast blir integers. +1 är för att man ska börja på 1. 
-
-
+// Detta är randomgeneratorn som slumpar fram landet samt den rätta staden i backend
 const fetchData = async () => {
-    const API_URL =`https://localhost:5001/api/Question/${correctNr}`;
+    const API_URL ="https://localhost:5001/api/Question/Random";
     try {
             const response = await Axios.get(API_URL);
             setServerResponse(response);
@@ -53,34 +42,35 @@ const fetchData = async () => {
         
 };
 
-/*
+// Slumpar fram city2
 const fetchData2 = async () => {
-    const API_URL =`https://localhost:5001/api/Question/${randomOption}`;
+    const API_URL ="https://localhost:5001/api/Question/Random";
     try {
             const response2 = await Axios.get(API_URL);
             setServerResponse2(response2);
           } catch (error) {
             alert("Error retrieving desired data from server: " + error);
-          }
-        
+          }   
 };
 
+// Slumpar fram city3
 const fetchData3 = async () => {
-    const API_URL =`https://localhost:5001/api/Question/${randomOption2}`;
+    const API_URL ="https://localhost:5001/api/Question/Random";
     try {
             const response3 = await Axios.get(API_URL);
             setServerResponse3(response3);
           } catch (error) {
             alert("Error retrieving desired data from server: " + error);
-          }
-        
+          }   
 };
-*/
 
-    // unKnown styr switch-satsen. 
-    const unKnown =   Math.floor(Math.random() * 3) + 1; // Slumpar ett nummer mellan 1 och 3
-    
-    
+// Wrappar alla fetch
+const WrapperFunction = () => {
+    fetchData(); 
+    fetchData2();
+    fetchData3();
+}; 
+
     // fel 415 unsupported media type, hämtar fel format...Behöver troligtvis dekonstukta objektet?
     /*
     const CheckAnswer = () => {
@@ -109,24 +99,27 @@ const fetchData3 = async () => {
     const CheckAnswer = () => {
         // Metod ovan är utkommenterad just nu pga att den inte funkar helt hundra :D 
         setCount(count +1)
-        console.log(getQuestion(question))
+        // I denna ska vi också lägga till så att cordinaterna till maps, läggs in så att rätt svar visas på kartan. 
     }
     
+        // unKnown styr switch-satsen. 
+        const unKnown =   Math.floor(Math.random() * 3) + 1; // Slumpar ett nummer mellan 1 och 3
+
    const Options =() => {
-        switch (1) {
+        switch (unKnown) {
             case 1:
                 return (
                 <> 
                 <div className="question">
                 <h2>Which city is located in: {serverResponse?.data?.country} ? </h2>
-                Case 1. Om man svarar så ska count öka här: {count} :) 
-                <button className="option-btn" onClick={() => fetchData()}> Hämtar data </button>
+                Case 1. Om man svarar så ska count öka här: {count} 
+                <button className="option-btn" onClick={() => WrapperFunction()}>Fetch Country</button>
                 </div>
                 {/* lägg till onChange={(event) => setInput(event.target.value)*/}
                 <div className="option-buttons"> 
-                <button className="option-btn" value={correctNr} onClick={()=> CheckAnswer()}> {serverResponse?.data?.city} </button>
-                <button className="option-btn" value={randomOption} onClick={() => CheckAnswer()}>{serverResponse?.data?.city}</button>
-                <button className="option-btn" value={randomOption2} onClick={() => CheckAnswer()}>{serverResponse?.data?.city}</button>
+                <button className="option-btn" value={serverResponse?.data?.city} onClick={()=> CheckAnswer()}> {serverResponse?.data?.city} </button>
+                <button className="option-btn" value={serverResponse2?.data?.city} onClick={() => CheckAnswer()}>{serverResponse2?.data?.city}</button>
+                <button className="option-btn" value={serverResponse3?.data?.city} onClick={() => CheckAnswer()}>{serverResponse3?.data?.city}</button>
                 </div>
                 </>
                 )
@@ -134,14 +127,14 @@ const fetchData3 = async () => {
                 return (
                 <> 
                 <div className="question">
-                <h2>Which city is located in: {correctNr} ? </h2>
-                Case 2. Om man svarar så ska count öka här:{count} :) 
-                </div>
-                        
+                <h2>Which city is located in: {serverResponse?.data?.country} ? </h2>
+                Case 2. Om man svarar så ska count öka här:{count} 
+                <button className="option-btn" onClick={() => WrapperFunction()}>Fetch Country</button>
+                </div>   
                 <div className="option-buttons">
-                <button className="option-btn" onClick={() => CheckAnswer()}>{randomOption}</button>
-                <button className="option-btn" onClick={() => CheckAnswer()}>{randomOption2}</button>
-                <button className="option-btn" onClick={() => CheckAnswer()}>{correctNr}</button>
+                <button className="option-btn" value={serverResponse2?.data?.city} onClick={()=> CheckAnswer()}> {serverResponse2?.data?.city} </button>
+                <button className="option-btn" value={serverResponse3?.data?.city} onClick={() => CheckAnswer()}>{serverResponse3?.data?.city}</button>
+                <button className="option-btn" value={serverResponse?.data?.city} onClick={() => CheckAnswer()}>{serverResponse?.data?.city}</button>
                 </div>
                 </>
                 )
@@ -150,18 +143,17 @@ const fetchData3 = async () => {
                 return (
                 <> 
                 <div className="question">
-                <h2>Which city is located in: {correctNr} ? </h2>
-                Case 3. Om man svarar så ska count öka här: {count} :) 
+                <h2>Which city is located in: {serverResponse?.data?.country} ? </h2>
+                Case 3. Om man svarar så ska count öka här: {count} 
+                <button className="option-btn" onClick={() => WrapperFunction()}>Fetch Country</button>
                 </div>
-                    
                 <div className="option-buttons">
-                <button className="option-btn" onClick={() => CheckAnswer()}>{randomOption2}</button>
-                <button className="option-btn" onClick={() => CheckAnswer()}>{correctNr}</button>
-                <button className="option-btn" onClick={() => CheckAnswer()}>{randomOption}</button>
+                <button className="option-btn" value={serverResponse3?.data?.city} onClick={()=> CheckAnswer()}> {serverResponse3?.data?.city} </button>
+                <button className="option-btn" value={serverResponse?.data?.city} onClick={() => CheckAnswer()}>{serverResponse?.data?.city}</button>
+                <button className="option-btn" value={serverResponse2?.data?.city} onClick={() => CheckAnswer()}>{serverResponse2?.data?.city}</button>
                  </div>
                  </>
             )
-  
             default: 
                 <p>Something went wrong...</p>
                break; 
@@ -169,8 +161,24 @@ const fetchData3 = async () => {
     }
     return (
         <React.Fragment> 
-        <Map lat={57.7088} lng={11.9745} /> 
+            <Map lat={57.7088} lng={11.9745} /> 
+            {/*  <Map lat={+serverResponse?.data?.longitude} lng={+serverResponse?.data?.latitude} /> */}
         <Options/>
         </React.Fragment>
     )
     }; 
+
+
+
+/*
+const fetchData = async () => {
+    const API_URL =`https://localhost:5001/api/Question/${correctNr}`;
+    try {
+            const response = await Axios.get(API_URL);
+            setServerResponse(response);
+          } catch (error) {
+            alert("Error retrieving desired data from server: " + error);
+          }
+        
+};
+*/ 

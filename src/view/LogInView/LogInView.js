@@ -34,7 +34,9 @@ export const LogInView = () => {
             try{
                 setAuthenticatedUser(null); 
                 navigate(RoutingPath.logInView); 
+                /*
                 console.log(setAuthenticatedUser); 
+                */
             }catch(error){
                 console.log(error); 
             }

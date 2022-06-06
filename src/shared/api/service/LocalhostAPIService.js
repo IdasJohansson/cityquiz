@@ -27,6 +27,12 @@ const getQuestion = async () => {
 }
 export {getQuestion}
 
+// Hämtar ett random Question object
+const getRandomQuestion = async () => {
+    return await http.get("Question/Random")
+}
+export {getRandomQuestion}
+
 
 // Ska kolla om man har svarat rätt i db, returnerar true eller false. 
 const getAnswerCheck = async () => {
