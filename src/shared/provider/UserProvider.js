@@ -9,5 +9,5 @@ export const UserProvider = ({children}) => {
         <UserContext.Provider value = {[authenticatedUser, setAuthenticatedUser]}>
             {children}
         </UserContext.Provider>
-    )
-}
+    ); 
+}; 
