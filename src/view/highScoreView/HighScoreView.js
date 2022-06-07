@@ -1,21 +1,25 @@
 import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 //osäker på hur importen ska ligga här
 import "./highScoreView.css";
 import LocalStorage from "../../shared/storage/LocalStorage";
 import "../../index.css";
+import RoutingPath from "../../routes/RoutingPath";
 
 export const HighScoreView = () => {
   const count = 0;
   const questions = 10;
   const setCount = 0;
-  const setCurrentQuestion = 0;
+  const setQuestionNumber = 0;
+  const navigate = useNavigate(); 
 
   const [showResults, setShowResults] = useState(false); //tillhör idas on clickevent
   const restartGame = () => {
     //om man vill köra igen, nollställer spelet
     setCount(0); //nollställer count
-    setCurrentQuestion(0); //nollställer currentquestion
+    setQuestionNumber(0); //nollställer currentquestion
     setShowResults(false); //nollställer showresults
+    navigate(RoutingPath.quizView); 
   };
 
   return (
