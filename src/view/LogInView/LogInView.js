@@ -34,9 +34,6 @@ export const LogInView = () => {
             try{
                 setAuthenticatedUser(null); 
                 navigate(RoutingPath.logInView); 
-                /*
-                console.log(setAuthenticatedUser); 
-                */
             }catch(error){
                 console.log(error); 
             }
@@ -57,7 +54,7 @@ export const LogInView = () => {
             onChange={(event) => setUser({...user, inputpassword: event.target.value})}/><br/>
             <button className="logInButton" type="submit" onClick={() => logIn()}> LOG IN</button>  <br/>
             <button className="logInButton" type="submit" onClick={() => logOut()}> LOG OUT</button>
-            {/* Flytta log out till profile*/}
+            {/* Flytta log out till profile ? */}
         </div>
     )
 }
