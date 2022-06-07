@@ -1,5 +1,5 @@
 import "./quiz.css"
-import React, { useState, useContext, useEffect } from "react"; 
+import React, { useState, useContext,createContext , useEffect } from "react"; 
 import { useNavigate } from "react-router-dom";
 import RoutingPath from "../../routes/RoutingPath"
 import { Map } from "../map/Map";
@@ -17,6 +17,8 @@ import Axios from "axios";
 export const Quiz = () => {
 // Count är antal rätt svar, svarar man rätt ökar count med 1.
 const [count, setCount] = useState(0);
+// Lägg till useContext här för att kunna skicka vidare värdet till highscore
+const UserCount = createContext(null);
 // Vi börjar på fråga 1 därav useState(1)
 const [questionNumber, setQuestionNumber] = useState(1);
 // När man har svarat på 10 frågor så skickas man till highscoreView i arrowfunctionen TenQuestion() 
