@@ -8,16 +8,17 @@ import RoutingPath from "../../routes/RoutingPath"
 import {getLoginCheck} from "../../shared/api/service/LocalhostAPIService"
 
 export const LogInView = () => {
-    const [AuthenticatedUser, setAuthenticatedUser] = useContext(UserContext);
+    const [AuthenticatedUser, setAuthenticatedUser] = useContext(UserContext); // Authenticated user lagrad globalt.
     const navigate = useNavigate(); 
-    const [user, setUser] = useState({inputusername:null, inputpassword:null});
+    const [user, setUser] = useState({inputusername:null, inputpassword:null}); // Användare som är lagrat i databasen
+    const [username, SetUserName] = useState("Guest") // Gästanvändare,(aktivera Setusername för at kunna lagra i databasen med post-funktionen i backend)
     
     const logIn = () => {
         try{
             getLoginCheck(user).then(response => {
                 if(response === true){
                     setAuthenticatedUser(user.inputusername);
-                    navigate(RoutingPath.quizView); // Lägg till här vart man skickas efter inlogg. 
+                    navigate(RoutingPath.quizView); // Hit skickas man efter inlogg
                     console.log(setAuthenticatedUser); 
                 }
                 else{
@@ -30,10 +31,12 @@ export const LogInView = () => {
             }
         }; 
 
-        const logOut = () => {
+        const addUser = () => {
             try{
-                setAuthenticatedUser(null); 
-                navigate(RoutingPath.logInView); 
+                setAuthenticatedUser(username); 
+                //localStorage.setItem(LocalStorage.username, username);
+                //SetUserName(event.target.value)
+                navigate(RoutingPath.quizView);
             }catch(error){
                 console.log(error); 
             }
@@ -41,7 +44,7 @@ export const LogInView = () => {
 
     return (
         <div className="container">
-            <h1 className="headline">LOG IN</h1>
+            <h1 className="headline">WELCOME</h1>
             <h2 className="userName">Username: </h2>
             <input placeholder="Enter username"
             type="text" 
@@ -53,8 +56,8 @@ export const LogInView = () => {
             name="password"
             onChange={(event) => setUser({...user, inputpassword: event.target.value})}/><br/>
             <button className="logInButton" type="submit" onClick={() => logIn()}> LOG IN</button>  <br/>
-            <button className="logInButton" type="submit" onClick={() => logOut()}> LOG OUT</button>
-            {/* Flytta log out till profile ? */}
+            <button className="logInButton" type="submit" onClick={() => addUser()}> GUEST USER </button> <br/>
+            (No input required for Guest User)
         </div>
     )
 }
