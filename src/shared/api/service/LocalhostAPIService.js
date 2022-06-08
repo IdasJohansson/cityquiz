@@ -36,6 +36,7 @@ const getRandomQuestion = async () => {
 export { getRandomQuestion };
 
 // Ska kolla om man har svarat rätt i db, returnerar true eller false.
+// Ta in question i parantesen 
 const getAnswerCheck = async () => {
   return await http.get("Question/CheckAnswer");
 };

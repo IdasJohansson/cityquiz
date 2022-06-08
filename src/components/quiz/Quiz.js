@@ -6,6 +6,7 @@ import { Map } from "../map/Map";
 import LocalhostAPI from "../../shared/api/LocalhostAPI"; // Denna ska användas om man kör axios get? 
 import {getQuestion, getAnswerCheck} from "../../shared/api/service/LocalhostAPIService"
 import Axios from "axios";
+import { CountContext } from "../../shared/provider/CountProvider";
 
 // Lägg till en useEffect() som renderar om sidan varje gång man har svarat på en fråga. 
 // Hämta lat och lng from question objectet. 
@@ -15,7 +16,7 @@ import Axios from "axios";
 
 export const Quiz = () => {
 // Count är antal rätt svar, svarar man rätt ökar count med 1.
-const [count, setCount] = useState(0); // Behöver bli global så att man kommer åt i highscore
+const [count, setCount] = useContext(CountContext); // Behöver bli global så att man kommer åt i highscore
 // Lägg till useContext här för att kunna skicka vidare värdet till highscore
 
 // Vi börjar på fråga 1 därav useState(1)
@@ -26,8 +27,10 @@ const navigate = useNavigate();
 // tror att vi ska ta bort denna rackaren :) 
 const [question, setQuestion] = useState({id:null,countryname:null, cityname:null, long:null, lati:null });
 */
-const [question, setQuestion] = useState(1); 
+const [question, setQuestion] = useState(1); // Använder inte denna? 
+
 const [answer, setAnswer] = useState();
+const [correctAnswer, setCorrectAnswer] = useState(""); 
 
 // Här i når man city och country, long och latitude
 // Detta är "rätt land och stad"
@@ -37,12 +40,21 @@ const [serverResponse2, setServerResponse2] = useState();
 // Detta är random city3
 const [serverResponse3, setServerResponse3] = useState();
 
+const handleCorrectAnswer = (answer) => {
+setCorrectAnswer(answer)
+}
+
+// Handle serverresponse add
+
 // Detta är randomgeneratorn som slumpar fram landet samt den rätta staden i backend
 const fetchData = async () => {
     const API_URL ="https://localhost:5001/api/Question/Random";
     try {
             const response = await Axios.get(API_URL);
+            // handleServerResponse
             setServerResponse(response);
+            console.log(serverResponse); 
+            handleCorrectAnswer(serverResponse?.data.city)
             // Answer har inget värde i detta läget, ska man lägga till det? 
           } catch (error) {
             alert("Error retrieving desired data from server: " + error);
@@ -80,13 +92,14 @@ const WrapperFunction = () => {
 }; 
 
 
+/*
 // Anropar WrapperFunction direkt när man kommer in på sidan. 
 useEffect(() => {
  WrapperFunction(); 
   }, []);
+  */
 
-
-    /*
+  /*
     // fel 415 unsupported media type, hämtar fel format...Behöver troligtvis dekonstukta objektet?
     const CheckAnswer = () => {
       TenQuestions(); 
@@ -115,14 +128,14 @@ useEffect(() => {
         }
     }; 
     */
-    
- 
-    
 
+
+    
     const CheckAnswer = (e) => { 
       setAnswer(e);
       console.log(answer);
-      if(answer === "ok")
+      console.log(correctAnswer)
+      if(answer === correctAnswer)
       {
         setCount(count +1)
       }
@@ -132,6 +145,7 @@ useEffect(() => {
       // Renderar om land och city options genom de tre olika apianropen...  
       WrapperFunction(); 
   } 
+
 
     const TenQuestions = () => {
         if(questionNumber === 10)
