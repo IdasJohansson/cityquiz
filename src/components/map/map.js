@@ -28,6 +28,3 @@ export const Map = (props) => {
     </div>); 
     }; 
 
-// Addera parametrar center, zoom, longitude and latitude så att api-anropet blir rätt 
-// 
-    
