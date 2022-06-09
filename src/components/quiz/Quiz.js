@@ -138,7 +138,8 @@ useEffect(() => {
             <Map lat={+serverResponse?.data?.longitude} lng={+serverResponse?.data?.latitude} /> 
             <div className="question">
                 <h2> Question {questionNumber}: Which city is located in: {serverResponse?.data?.country} ? </h2>
-                Score: {count} 
+                <h2>Score: {count} </h2> 
+                <p> (Hover for clue)</p>
                 </div>
                 <Options/>
         </React.Fragment>
