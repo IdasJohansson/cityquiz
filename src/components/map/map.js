@@ -2,12 +2,11 @@ import "./map.css"
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 
 export const Map = (props) => {
-
+    const API_KEY = process.env.REACT_APP_API_KEY; 
     return (
     <div className="googleMap">
-
         <LoadScript
-            googleMapsApiKey="AIzaSyBKZmbag9A7FWNg2e_A788n-g3lBri6FrY " // Obs denna ligger nu synlig på github :) 
+            googleMapsApiKey={API_KEY} 
         >
             <GoogleMap
                 mapContainerStyle={{
