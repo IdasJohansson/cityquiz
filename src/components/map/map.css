@@ -5,9 +5,28 @@
     background-color: var(--backgroundcolor);
     margin-left: auto;
     margin-right: auto;
+    opacity: 0;
+    /*
+    animation-name: test;
+    animation-duration: 10s;
+    animation-timing-function: ease;
+    animation-iteration-count: infinite;
+    */
+  
 }
 
-    
+/*
+@keyframes test {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+*/
+
+.googleMap:hover{
+opacity: 1; 
+transition: opacity 3s; 
+}
+
 
 .icon-questionmark{
     display: flex;
