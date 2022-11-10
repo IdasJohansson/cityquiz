@@ -16,9 +16,6 @@ After you pressed Log In or Guest User you get redirected to the Quiz View and t
 
 ![Quiz View](src/shared/img/Result.png)
 
-
-
-
 ## Instructions: 
 
 ## DB setup: 
